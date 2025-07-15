@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class SweetServiceTest {
 
@@ -14,8 +16,7 @@ public class SweetServiceTest {
 
     @Test
     void shouldAddSweetSuccessfully(){
-            Sweet sweet = new Sweet(1001, "Kaju Katli", "Nut-Based", 50, 20);
-            Sweet added = sweetService.addSweet(sweet);
+            Sweet added = sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20);
             assertEquals("Kaju Katli", added.getName());
     }
 }
