@@ -3,6 +3,8 @@ package com.incubyte.sweetshop.service;
 import com.incubyte.sweetshop.customExceptions.InsufficientStockException;
 import com.incubyte.sweetshop.customExceptions.SweetAlreadyExistsException;
 import com.incubyte.sweetshop.customExceptions.SweetNotFoundException;
+import com.incubyte.sweetshop.customExceptions.SweetAlreadyExistsException;
+import com.incubyte.sweetshop.customExceptions.SweetNotFoundException;
 import com.incubyte.sweetshop.model.Sweet;
 import org.springframework.stereotype.Service;
 

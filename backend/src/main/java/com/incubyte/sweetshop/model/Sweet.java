@@ -49,11 +49,11 @@ public class Sweet {
         this.price = price;
     }
 
-    public int getQuantity() {
+    public int getQuantityInStock() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantityInStock(int quantity) {
         this.quantity = quantity;
     }
 }

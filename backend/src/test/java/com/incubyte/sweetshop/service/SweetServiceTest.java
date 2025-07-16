@@ -45,7 +45,7 @@ public class SweetServiceTest {
     void shouldReturnAllSweetsOfShop(){
         List<Sweet> sweetList = sweetService.getAllSweets();
         assertEquals(3,sweetList.size());
-        assertEquals("Kesar Penda", sweetList.get(0).getName());
+        assertEquals("Kaju Katli", sweetList.get(0).getName());
     }
 
     //for getting exception on adding duplicate sweets
