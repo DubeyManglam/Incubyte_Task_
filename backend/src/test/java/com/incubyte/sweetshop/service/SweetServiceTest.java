@@ -1,7 +1,8 @@
 package com.incubyte.sweetshop.service;
 
-import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExistsException;
-import com.incubyte.sweetshop.customizedExceptions.SweetNotFoundException;
+import com.incubyte.sweetshop.customExceptions.InsufficientStockException;
+import com.incubyte.sweetshop.customExceptions.SweetAlreadyExistsException;
+import com.incubyte.sweetshop.customExceptions.SweetNotFoundException;
 import com.incubyte.sweetshop.model.Sweet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -149,5 +150,10 @@ public class SweetServiceTest {
     void shouldPurchaseSweetSuccessfullyAndReduceStock() {
         Sweet purchasedSweet = sweetService.purchaseSweet(1000L, 5);  // ID = 1000, quantity = 5
         assertEquals(15, purchasedSweet.getQuantity());  // original stock was 20 of Kaju Katli
+    }
+
+    @Test
+    void shouldThrowExceptionIfStockNotAvailable() {
+        assertThrows(InsufficientStockException.class,()->sweetService.purchaseSweet(1001L, 16));// original stock was 15 only of gajar halwa
     }
 }

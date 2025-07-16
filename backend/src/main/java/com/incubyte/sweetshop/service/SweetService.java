@@ -1,7 +1,8 @@
 package com.incubyte.sweetshop.service;
 
-import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExistsException;
-import com.incubyte.sweetshop.customizedExceptions.SweetNotFoundException;
+import com.incubyte.sweetshop.customExceptions.InsufficientStockException;
+import com.incubyte.sweetshop.customExceptions.SweetAlreadyExistsException;
+import com.incubyte.sweetshop.customExceptions.SweetNotFoundException;
 import com.incubyte.sweetshop.model.Sweet;
 import org.springframework.stereotype.Service;
 
@@ -112,6 +113,8 @@ public class SweetService {
                 if (sweet.getQuantity() >= quantity) {
                     sweet.setQuantity(sweet.getQuantity() - quantity);
                     return sweet;
+                }else{
+                    throw new InsufficientStockException("Not enough stock for sweet ID: "+ id);
                 }
             }
         }
