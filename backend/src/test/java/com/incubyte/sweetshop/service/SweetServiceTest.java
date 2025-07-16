@@ -157,6 +157,16 @@ public class SweetServiceTest {
         assertEquals(expectedOrder, actualOrder);
     }
 
+    @Test
+    void shouldReturnSortedListOfSweetsByQuantityDescending() {
+        List<String> expectedOrder = List.of("Gulab Jamun", "Kaju Katli", "Gajar Halwa");
+        List<String> actualOrder = sweetService.sortSweetsByQuantityDescending()
+                .stream()
+                .map(Sweet::getName)
+                .toList();
+        assertEquals(expectedOrder, actualOrder);
+    }
+
     //                        -------------Inventory Management------------
     //                        -------------Purchase sweet---------------
     @Test
