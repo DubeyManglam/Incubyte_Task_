@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 public class SweetServiceTest {
 
-//                              --------------ADD Sweets-------------
+     //                          ---------------ADD Sweets-------------
 
     //dependency injection in spring boot
     @Autowired
@@ -31,7 +31,7 @@ public class SweetServiceTest {
         sweetService.addSweet("Gulab Jamun", "Milk-Based", 10, 50);
     }
 
-//    for adding sweet into list
+    //for adding sweets into list
     @Test
     void shouldAddSweetSuccessfully(){
             Sweet sweetAdded = sweetService.addSweet("Rabdi", "Milk-Based", 40, 10);
@@ -53,8 +53,7 @@ public class SweetServiceTest {
         assertThrows(SweetAlreadyExistsException.class,()->sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20));
     }
 
-
-    //                    --------------DELETE Sweets--------------
+    //                      --------------DELETE Sweets--------------
 
     @Test
     void shouldDeleteSweetSuccessfully() {
@@ -68,7 +67,7 @@ public class SweetServiceTest {
         assertThrows(SweetNotFoundException.class, () -> sweetService.deleteSweet(999));
     }
 
-    //                                   -----------Search By Name---------------
+    //                        -------------Search By Name---------------
     @Test
     void shouldReturnSweetWhenSearchedByName() {
         List<Sweet> result = sweetService.searchSweetByName("Kaju Katli");
@@ -84,10 +83,11 @@ public class SweetServiceTest {
     }
 
     @Test
-    void shouldThrowExceptionIfSerchedSweetIsNotFound(){
+    void shouldThrowExceptionIfSearchedSweetIsNotFound(){
         assertThrows(SweetNotFoundException.class,()->sweetService.searchSweetByName("rasgulla"));
     }
 
+    //                        -------------Search By Category---------------
     @Test
     void shouldReturnSweetFromGivenCategory() {
         List<Sweet> sweets = sweetService.searchSweetByCategory("Milk-Based");
@@ -106,11 +106,19 @@ public class SweetServiceTest {
 
     @Test
     void shouldReturnSortedListInDescendingBySweetsByPrice() {
-        List<String> expectedOrderOfSweets = List.of("Gulab Jamun", "Gajar Halwa", "Kaju Katli");
+        List<String> expectedOrderOfSweets = List.of("Kaju Katli", "Gajar Halwa", "Gulab Jamun");
         List<String> resultedOrderOfSweets = sweetService.sortSweetsByPriceDescending()
                                                             .stream()
                                                             .map(Sweet::getName).collect(Collectors.toList());
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
-    
+
+    @Test
+    void shouldReturnSortedListInAscendingBySweetsByPrice() {
+        List<String> expectedOrderOfSweets = List.of("Gulab Jamun", "Gajar Halwa", "Kaju Katli");
+        List<String> resultedOrderOfSweets = sweetService.sortSweetsByPriceAscending()
+                .stream()
+                .map(Sweet::getName).collect(Collectors.toList());
+        assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
+    }
 }

@@ -16,18 +16,19 @@ public class SweetService {
     private List<Sweet> sweets = new ArrayList<>();
     private long idCounter = 1000;
 
+    //Add sweet
     public Sweet addSweet(String name, String category, double price, int quantity) {
         for (Sweet sweet : sweets) {
             if (sweet.getName().equalsIgnoreCase(name)) {
                 throw new SweetAlreadyExistsException("Sweet of this name already exists");
             }
         }
-
         Sweet sweet = new Sweet(idCounter++, name, category, price, quantity);
         sweets.add(sweet);
         return sweet;
     }
 
+    //for viewing all sweets
     public List<Sweet> getAllSweets() {
         return new ArrayList<>(sweets);
     }
@@ -51,7 +52,6 @@ public class SweetService {
     }
 
     //Search by name functionality and if sweet is not found then throws exception
-
     public List<Sweet> searchSweetByName(String name) {
         List<Sweet> result = sweets.stream()
                 .filter(s -> s.getName().equalsIgnoreCase(name))
@@ -70,13 +70,20 @@ public class SweetService {
                 .collect(Collectors.toList());
     }
 
-    //sort by price range descending
+    //sort by price in descending order
     public List<Sweet> sortSweetsByPriceDescending() {
-        List<Sweet> sortedList = new ArrayList<>(sweets);
-        sortedList.sort(Comparator.comparingDouble(Sweet::getPrice));
-        return sortedList;
+        return sweets.stream()
+                .sorted(Comparator.comparingDouble(Sweet::getPrice).reversed())
+                .toList();
     }
 
-    //sort by price range descending
+    //sort by price in ascending order
+    public List<Sweet> sortSweetsByPriceAscending() {
+        return sweets.stream()
+                .sorted(Comparator.comparingDouble(Sweet::getPrice))
+                .toList();
+    }
+
+    
 
 }
