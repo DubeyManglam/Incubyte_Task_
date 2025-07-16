@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -88,9 +89,27 @@ public class SweetServiceTest {
     }
 
     @Test
-    void shouldReturnAllSweetsFromGivenCategory() {
+    void shouldReturnSweetFromGivenCategory() {
         List<Sweet> sweets = sweetService.searchSweetByCategory("Milk-Based");
         assertEquals(1, sweets.size());
         assertEquals("Gulab Jamun", sweets.get(0).getName());
+    }
+
+    @Test
+    void shouldReturnAllSweetsFromGivenCategory() {
+        sweetService.addSweet("Barfi", "Milk-Based", 20, 40);
+        List<Sweet> sweets = sweetService.searchSweetByCategory("Milk-Based");
+        assertEquals(2, sweets.size());
+        assertEquals("Gulab Jamun", sweets.get(0).getName());
+        assertEquals("Barfi", sweets.get(1).getName());
+    }
+
+    @Test
+    void shouldReturnSortedListInDescendingBySweetsByPrice() {
+        List<String> expectedOrderOfSweets = List.of("Gulab Jamun", "Gajar Halwa", "Kaju Katli");
+        List<String> resultedOrderOfSweets = sweetService.sortSweetsByPrice()
+                                                            .stream()
+                                                            .map(Sweet::getName).collect(Collectors.toList());
+        assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
 }
