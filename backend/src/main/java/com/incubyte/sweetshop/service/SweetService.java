@@ -51,6 +51,20 @@ public class SweetService {
         throw new SweetNotFoundException("Sweet with ID "+ id + " not found");
     }
 
+    //delete sweets with name and throw exception if sweet doesn't exist
+    public Sweet deleteSweetByName(String name) {
+        Iterator<Sweet> iterator = sweets.iterator();
+        while (iterator.hasNext()) {
+            Sweet sweet = iterator.next();
+            if (sweet.getName().equalsIgnoreCase(name)) {
+                iterator.remove();
+                return sweet;
+            }
+        }
+        throw new SweetNotFoundException("Sweet with name '" + name + "' not found");
+    }
+
+
     //Search by name functionality and if sweet is not found then throws exception
     public List<Sweet> searchSweetByName(String name) {
         List<Sweet> result = sweets.stream()
