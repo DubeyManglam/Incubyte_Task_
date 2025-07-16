@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 public class SweetServiceTest {
 
+//                              --------------ADD Sweets-------------
+
     //dependency injection in spring boot
     @Autowired
     private SweetService sweetService;
@@ -50,4 +52,14 @@ public class SweetServiceTest {
         assertThrows(SweetAlreadyExists.class,()->sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20));
     }
 
+
+    //                    --------------DELETE Sweets--------------
+
+    @Test
+    void shouldDeleteSweetSuccessfully() {
+        List<Sweet> initialList = sweetService.getAllSweets();
+        long idToDelete = initialList.get(0).getId(); // Kaju Katli should be deleted
+        sweetService.deleteSweetById(idToDelete);
+        assertEquals(2, sweetService.getAllSweets().size());
+    }
 }
