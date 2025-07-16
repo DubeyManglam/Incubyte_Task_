@@ -1,13 +1,13 @@
 package com.incubyte.sweetshop.service;
 
-import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExists;
+import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExistsException;
+import com.incubyte.sweetshop.customizedExceptions.SweetNotFoundException;
 import com.incubyte.sweetshop.model.Sweet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,7 +49,7 @@ public class SweetServiceTest {
     //for getting exception on adding duplicate sweets
     @Test
     void shouldThrowExceptionOnAddingDuplicateSweets(){
-        assertThrows(SweetAlreadyExists.class,()->sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20));
+        assertThrows(SweetAlreadyExistsException.class,()->sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20));
     }
 
 
@@ -61,4 +61,10 @@ public class SweetServiceTest {
         List<Sweet> sweetsList = sweetService.getAllSweets();
         assertEquals(2, sweetsList.size());  // 3 originally, now 2 after delete
     }
+
+    @Test
+    void shouldThrowExceptionWhenDeletingNonExistingSweet() {
+        assertThrows(SweetNotFoundException.class, () -> sweetService.deleteSweet(999));
+    }
+
 }

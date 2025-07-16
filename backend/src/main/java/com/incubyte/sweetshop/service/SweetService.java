@@ -1,6 +1,7 @@
 package com.incubyte.sweetshop.service;
 
-import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExists;
+import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExistsException;
+import com.incubyte.sweetshop.customizedExceptions.SweetNotFoundException;
 import com.incubyte.sweetshop.model.Sweet;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class SweetService {
     public Sweet addSweet(String name, String category, double price, int quantity) {
         for (Sweet sweet : sweets) {
             if (sweet.getName().equalsIgnoreCase(name)) {
-                throw new SweetAlreadyExists("Sweet of this name already exists");
+                throw new SweetAlreadyExistsException("Sweet of this name already exists");
             }
         }
 
@@ -34,15 +35,16 @@ public class SweetService {
         idCounter = 1000; // reset ID
     }
 
+    //delete sweets with id and throw exception if sweet doesn't exist
     public Sweet deleteSweet(int id) {
         Iterator<Sweet> iterator = sweets.iterator();
         while (iterator.hasNext()) {
             Sweet sweet = iterator.next();
             if (sweet.getId() == id) {
-                iterator.remove(); 
+                iterator.remove();
                 return sweet;
             }
         }
-        return null;
+        throw new SweetNotFoundException("Sweet with ID "+ id + " not found");
     }
 }
