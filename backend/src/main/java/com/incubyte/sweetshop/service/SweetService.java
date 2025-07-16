@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SweetService {
@@ -46,5 +47,13 @@ public class SweetService {
             }
         }
         throw new SweetNotFoundException("Sweet with ID "+ id + " not found");
+    }
+
+    //Search by name functionality
+
+    public List<Sweet> searchSweetByName(String name) {
+        return sweets.stream()
+                .filter(s -> s.getName().equalsIgnoreCase(name))
+                .collect(Collectors.toList());
     }
 }
