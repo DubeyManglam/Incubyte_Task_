@@ -105,4 +105,17 @@ public class SweetService {
                 .toList();
     }
 
+    //                        -------------Inventory Management---------------
+    public Sweet purchaseSweet(long id, int quantity) {
+        for (Sweet sweet : sweets) {
+            if (sweet.getId() == id) {
+                if (sweet.getQuantity() >= quantity) {
+                    sweet.setQuantity(sweet.getQuantity() - quantity);
+                    return sweet;
+                }
+            }
+        }
+        return null;
+    }
+
 }

@@ -125,8 +125,7 @@ public class SweetServiceTest {
         assertTrue(sweetsInRange.stream().anyMatch(s -> s.getName().equals("Gajar Halwa")));
     }
 
-
-
+    //                        -------------Sort By Price in ascending and descending---------------
     @Test
     void shouldReturnSortedListInDescendingBySweetsByPrice() {
         List<String> expectedOrderOfSweets = List.of("Kaju Katli", "Gajar Halwa", "Gulab Jamun");
@@ -145,9 +144,10 @@ public class SweetServiceTest {
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
 
+    //                        -------------Purchase sweet---------------
     @Test
     void shouldPurchaseSweetSuccessfullyAndReduceStock() {
-        Sweet purchasedSweet = sweetService.purchaseSweet(1001, 5);  // ID = 1001, quantity = 5
-        assertEquals(15, purchasedSweet.getQuantity());  // original stock was 20
+        Sweet purchasedSweet = sweetService.purchaseSweet(1000L, 5);  // ID = 1000, quantity = 5
+        assertEquals(15, purchasedSweet.getQuantity());  // original stock was 20 of Kaju Katli
     }
 }
