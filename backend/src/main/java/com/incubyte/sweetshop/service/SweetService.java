@@ -107,6 +107,13 @@ public class SweetService {
                 .toList();
     }
 
+    //sort by quantity
+    public List<Sweet> sortSweetsByQuantityAscending() {
+        return sweets.stream()
+                .sorted(Comparator.comparingInt(Sweet::getQuantityInStock))
+                .toList();
+    }
+
     //                        -------------Inventory Management---------------
     //purchase sweet with given quantity
     public Sweet purchaseSweet(long id, int quantity) {
@@ -129,6 +136,8 @@ public class SweetService {
         for (Sweet sweet : sweets) {
             if (sweet.getId() == id) {
                 sweet.setQuantityInStock(sweet.getQuantityInStock() + quantity);
+                System.out.println("✅ Restocked " + quantity + " units of '" + sweet.getName() +
+                        "'. New stock: " + sweet.getQuantityInStock());
                 return sweet;
             }
         }
