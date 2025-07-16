@@ -67,6 +67,7 @@ public class SweetServiceTest {
         assertThrows(SweetNotFoundException.class, () -> sweetService.deleteSweet(999));
     }
 
+    //                                   -----------Search By Name---------------
     @Test
     void shouldReturnSweetWhenSearchedByName() {
         List<Sweet> result = sweetService.searchSweetByName("Kaju Katli");
@@ -74,4 +75,17 @@ public class SweetServiceTest {
         assertEquals("Kaju Katli", result.get(0).getName());
     }
 
+    @Test
+    void shouldReturnSweetWhenSearchedByCaseInsensitiveNames() {
+        List<Sweet> result = sweetService.searchSweetByName("gajar halwa");
+        assertEquals(1, result.size());
+        assertEquals("Gajar Halwa", result.get(0).getName());
+    }
+
+    @Test
+    void shouldThrowExceptionIfSerchedSweetIsNotFound(){
+        assertThrows(SweetNotFoundException.class,()->sweetService.searchSweetByName("rasgulla"));
+    }
+
+    
 }

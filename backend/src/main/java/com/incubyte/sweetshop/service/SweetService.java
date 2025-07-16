@@ -49,11 +49,16 @@ public class SweetService {
         throw new SweetNotFoundException("Sweet with ID "+ id + " not found");
     }
 
-    //Search by name functionality
+    //Search by name functionality and if sweet is not found then throws exception
 
     public List<Sweet> searchSweetByName(String name) {
-        return sweets.stream()
+        List<Sweet> result = sweets.stream()
                 .filter(s -> s.getName().equalsIgnoreCase(name))
                 .collect(Collectors.toList());
+
+        if (result.isEmpty()) {
+            throw new SweetNotFoundException("No sweet found with the name: " + name);
+        }
+        return result;
     }
 }
