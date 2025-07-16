@@ -52,7 +52,7 @@ public class SweetServiceTest {
         assertThrows(SweetAlreadyExistsException.class,()->sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20));
     }
 
-    //                      --------------DELETE Sweets--------------
+    //                      --------------DELETE Sweet By Id--------------
 
     @Test
     void shouldDeleteSweetSuccessfully() {
@@ -66,6 +66,7 @@ public class SweetServiceTest {
         assertThrows(SweetNotFoundException.class, () -> sweetService.deleteSweet(999));
     }
 
+    //                      --------------DELETE Sweet By Name--------------
     @Test
     void shouldDeleteSweetByNameSuccessfully() {
         Sweet deletedSweet = sweetService.deleteSweetByName("Kaju Katli");
@@ -73,6 +74,10 @@ public class SweetServiceTest {
         assertEquals(2, sweetService.getAllSweets().size());
     }
 
+    @Test
+    void shouldThrowExceptionWhenDeletingNonExistingSweetByName() {
+        assertThrows(SweetNotFoundException.class, () -> sweetService.deleteSweetByName("Peda"));
+    }
 
     //                        -------------Search By Name---------------
     @Test
@@ -140,5 +145,9 @@ public class SweetServiceTest {
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
 
-
+    @Test
+    void shouldPurchaseSweetSuccessfullyAndReduceStock() {
+        Sweet purchasedSweet = sweetService.purchaseSweet(1001, 5);  // ID = 1001, quantity = 5
+        assertEquals(15, purchasedSweet.getQuantity());  // original stock was 20
+    }
 }
