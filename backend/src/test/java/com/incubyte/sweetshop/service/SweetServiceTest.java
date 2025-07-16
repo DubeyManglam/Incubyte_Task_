@@ -11,8 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class SweetServiceTest {
@@ -104,12 +103,23 @@ public class SweetServiceTest {
         assertEquals("Barfi", sweets.get(1).getName());
     }
 
+    //                        -------------Search By Price Range---------------
+    @Test
+    void shouldReturnSweetsWithinGivenPriceRange() {
+        List<Sweet> sweetsInRange = sweetService.searchSweetsByPriceRange(10.0, 40.0);
+        assertEquals(2, sweetsInRange.size());
+        assertTrue(sweetsInRange.stream().anyMatch(s -> s.getName().equals("Gulab Jamun")));
+        assertTrue(sweetsInRange.stream().anyMatch(s -> s.getName().equals("Gajar Halwa")));
+    }
+
+
+
     @Test
     void shouldReturnSortedListInDescendingBySweetsByPrice() {
         List<String> expectedOrderOfSweets = List.of("Kaju Katli", "Gajar Halwa", "Gulab Jamun");
         List<String> resultedOrderOfSweets = sweetService.sortSweetsByPriceDescending()
                                                             .stream()
-                                                            .map(Sweet::getName).collect(Collectors.toList());
+                                                            .map(Sweet::getName).toList();
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
 
@@ -121,4 +131,6 @@ public class SweetServiceTest {
                 .map(Sweet::getName).collect(Collectors.toList());
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
+
+
 }

@@ -70,6 +70,13 @@ public class SweetService {
                 .collect(Collectors.toList());
     }
 
+    //search by price range(minimum and maximum prices)
+    public List<Sweet> searchSweetsByPriceRange(Double minPrice, Double maxPrice) {
+        return sweets.stream()
+                .filter(s -> s.getPrice() >= minPrice && s.getPrice() <= maxPrice)
+                .toList();
+    }
+
     //sort by price in descending order
     public List<Sweet> sortSweetsByPriceDescending() {
         return sweets.stream()
@@ -83,7 +90,5 @@ public class SweetService {
                 .sorted(Comparator.comparingDouble(Sweet::getPrice))
                 .toList();
     }
-
-    
 
 }
