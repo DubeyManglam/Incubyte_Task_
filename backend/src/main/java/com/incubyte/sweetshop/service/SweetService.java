@@ -17,6 +17,7 @@ public class SweetService {
     private List<Sweet> sweets = new ArrayList<>();
     private long idCounter = 1000;
 
+    //                        -------------Add Delete view sweets--------------
     //Add sweet
     public Sweet addSweet(String name, String category, double price, int quantity) {
         for (Sweet sweet : sweets) {
@@ -66,7 +67,7 @@ public class SweetService {
         throw new SweetNotFoundException("Sweet with name '" + name + "' not found");
     }
 
-
+    //                        -------------Search and Sort--------------
     //Search by name functionality and if sweet is not found then throws exception
     public List<Sweet> searchSweetByName(String name) {
         List<Sweet> result = sweets.stream()
@@ -120,7 +121,7 @@ public class SweetService {
                 .toList();
     }
 
-    //                        -------------Inventory Management---------------
+    //                        -------------Inventory Management--------------
     //purchase sweet with given quantity
     public Sweet purchaseSweet(long id, int quantity) {
         for (Sweet sweet : sweets) {
@@ -142,13 +143,11 @@ public class SweetService {
         for (Sweet sweet : sweets) {
             if (sweet.getId() == id) {
                 sweet.setQuantityInStock(sweet.getQuantityInStock() + quantity);
-                System.out.println("✅ Restocked " + quantity + " units of '" + sweet.getName() +
+                System.out.println("Restocked " + quantity + " units of '" + sweet.getName() +
                         "'. New stock: " + sweet.getQuantityInStock());
                 return sweet;
             }
         }
         throw new SweetNotFoundException("Sweet with ID " + id + " not found");
     }
-
-
 }
