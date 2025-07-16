@@ -31,20 +31,21 @@ public class SweetServiceTest {
         sweetService.addSweet("Gulab Jamun", "Milk-Based", 10, 50);
     }
 
-    //for adding sweets into list
+    //for adding sweets into shop
     @Test
-    void shouldAddSweetSuccessfully(){
+    void shouldAddSweetSuccessfullyToShop(){
             Sweet sweetAdded = sweetService.addSweet("Rabdi", "Milk-Based", 40, 10);
             List<Sweet> sweetList = sweetService.getAllSweets();
+            assertEquals(1003,sweetList.get(3).getId());
             assertEquals("Rabdi", sweetList.get(3).getName());
     }
 
-    //for getting all sweets list
+    //for getting all sweets list shop
     @Test
-    void getAllSweetsShouldReturnSize3andItemNameCorrectly(){
+    void shouldReturnAllSweetsOfShop(){
         List<Sweet> sweetList = sweetService.getAllSweets();
         assertEquals(3,sweetList.size());
-        assertEquals("Kaju Katli", sweetList.get(0).getName());
+        assertEquals("Kesar Penda", sweetList.get(0).getName());
     }
 
     //for getting exception on adding duplicate sweets
@@ -56,7 +57,7 @@ public class SweetServiceTest {
     //                      --------------DELETE Sweet By Id--------------
 
     @Test
-    void shouldDeleteSweetSuccessfully() {
+    void shouldDeleteSweetSuccessfullyFromShop() {
         Sweet deletedSweet = sweetService.deleteSweet(1000);  // assuming Kaju Katli has id 1000
         List<Sweet> sweetsList = sweetService.getAllSweets();
         assertEquals(2, sweetsList.size());  // 3 originally, now 2 after delete
@@ -145,6 +146,17 @@ public class SweetServiceTest {
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
 
+    //                        -------------Sort By Quantity in ascending and descending---------------
+    @Test
+    void shouldReturnSortedListOfSweetsByQuantityAscending() {
+        List<String> expectedOrder = List.of("Gajar Halwa", "Kaju Katli", "Gulab Jamun");  // Assuming stock: 15, 20, 50
+        List<String> actualOrder = sweetService.sortSweetsByQuantityAscending()
+                                               .stream()
+                                               .map(Sweet::getName)
+                                               .toList();
+        assertEquals(expectedOrder, actualOrder);
+    }
+
     //                        -------------Inventory Management------------
     //                        -------------Purchase sweet---------------
     @Test
@@ -168,5 +180,10 @@ public class SweetServiceTest {
     void shouldRestockSweetSuccessfully() {
         Sweet restockedSweet = sweetService.restockSweet(1000L, 10);  // Assuming ID 1000 exists
         assertEquals(30, restockedSweet.getQuantityInStock());  // Original was 20, now it should be 30
+    }
+
+    @Test
+    void shouldThrowExceptionIfSweetNotFoundToRestock() {
+        assertThrows(SweetNotFoundException.class,()->sweetService.restockSweet(1009L, 10));
     }
 }
