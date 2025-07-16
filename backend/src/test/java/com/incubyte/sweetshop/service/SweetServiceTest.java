@@ -57,9 +57,8 @@ public class SweetServiceTest {
 
     @Test
     void shouldDeleteSweetSuccessfully() {
-        List<Sweet> initialList = sweetService.getAllSweets();
-        long idToDelete = initialList.get(0).getId(); // Kaju Katli should be deleted
-        sweetService.deleteSweetById(idToDelete);
-        assertEquals(2, sweetService.getAllSweets().size());
+        Sweet deletedSweet = sweetService.deleteSweet(1000);  // assuming Kaju Katli has id 1000
+        List<Sweet> sweetsList = sweetService.getAllSweets();
+        assertEquals(2, sweetsList.size());  // 3 originally, now 2 after delete
     }
 }

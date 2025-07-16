@@ -5,6 +5,7 @@ import com.incubyte.sweetshop.model.Sweet;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -31,5 +32,17 @@ public class SweetService {
     public void clearAll() {
         sweets.clear();   // clear the list
         idCounter = 1000; // reset ID
+    }
+
+    public Sweet deleteSweet(int id) {
+        Iterator<Sweet> iterator = sweets.iterator();
+        while (iterator.hasNext()) {
+            Sweet sweet = iterator.next();
+            if (sweet.getId() == id) {
+                iterator.remove(); 
+                return sweet;
+            }
+        }
+        return null;
     }
 }
