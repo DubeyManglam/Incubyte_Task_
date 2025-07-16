@@ -114,6 +114,12 @@ public class SweetService {
                 .toList();
     }
 
+    public List<Sweet> sortSweetsByQuantityDescending() {
+        return sweets.stream()
+                .sorted(Comparator.comparingInt(Sweet::getQuantityInStock).reversed())
+                .toList();
+    }
+
     //                        -------------Inventory Management---------------
     //purchase sweet with given quantity
     public Sweet purchaseSweet(long id, int quantity) {
