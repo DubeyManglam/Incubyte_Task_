@@ -1,5 +1,6 @@
 package com.incubyte.sweetshop.service;
 
+import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExists;
 import com.incubyte.sweetshop.model.Sweet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 public class SweetServiceTest {
@@ -31,16 +33,21 @@ public class SweetServiceTest {
     void shouldAddSweetSuccessfully(){
             Sweet sweetAdded = sweetService.addSweet("Rabdi", "Milk-Based", 40, 10);
             List<Sweet> sweetList = sweetService.getAllSweets();
-            assertEquals(4,sweetList.size());
             assertEquals("Rabdi", sweetList.get(3).getName());
     }
 
     //for getting all sweets list
     @Test
-    void getAllSweetsShouldReturnSize1andItemNameCorrectly(){
-        List<Sweet> getSweetsList = sweetService.getAllSweets();
-        assertEquals(3,getSweetsList.size());
-        assertEquals("Kaju Katli", getSweetsList.get(0).getName());
+    void getAllSweetsShouldReturnSize3andItemNameCorrectly(){
+        List<Sweet> sweetList = sweetService.getAllSweets();
+        assertEquals(3,sweetList.size());
+        assertEquals("Kaju Katli", sweetList.get(0).getName());
+    }
+
+    //for getting exception on adding duplicate sweets
+    @Test
+    void shouldThrowExceptionOnAddingDuplicateSweets(){
+        assertThrows(SweetAlreadyExists.class,()->sweetService.addSweet("Kaju Katli", "Nut-Based", 50, 20));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.incubyte.sweetshop.service;
 
+import com.incubyte.sweetshop.customizedExceptions.SweetAlreadyExists;
 import com.incubyte.sweetshop.model.Sweet;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class SweetService {
     public Sweet addSweet(String name, String category, double price, int quantity) {
         for (Sweet sweet : sweets) {
             if (sweet.getName().equalsIgnoreCase(name)) {
-                throw new IllegalArgumentException("Sweet with this name already exists.");
+                throw new SweetAlreadyExists("Sweet of this name already exists");
             }
         }
 
