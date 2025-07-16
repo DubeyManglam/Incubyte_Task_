@@ -107,9 +107,10 @@ public class SweetServiceTest {
     @Test
     void shouldReturnSortedListInDescendingBySweetsByPrice() {
         List<String> expectedOrderOfSweets = List.of("Gulab Jamun", "Gajar Halwa", "Kaju Katli");
-        List<String> resultedOrderOfSweets = sweetService.sortSweetsByPrice()
+        List<String> resultedOrderOfSweets = sweetService.sortSweetsByPriceDescending()
                                                             .stream()
                                                             .map(Sweet::getName).collect(Collectors.toList());
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
+    
 }

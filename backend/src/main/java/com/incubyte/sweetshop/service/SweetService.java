@@ -70,14 +70,13 @@ public class SweetService {
                 .collect(Collectors.toList());
     }
 
-    //sort by price range
-    public List<Sweet> sortSweetsByPrice() {
-        //hardcoded "green" implementation for test to pass
-        return List.of(
-                new Sweet(1003L, "Gulab Jamun", "Milk-Based", 10, 50),
-                new Sweet(1002L, "Gajar Halwa", "Vegetable-Based", 30, 15),
-                new Sweet(1001L, "Kaju Katli", "Nut-Based", 50, 20)
-        );
+    //sort by price range descending
+    public List<Sweet> sortSweetsByPriceDescending() {
+        List<Sweet> sortedList = new ArrayList<>(sweets);
+        sortedList.sort(Comparator.comparingDouble(Sweet::getPrice));
+        return sortedList;
     }
+
+    //sort by price range descending
 
 }
