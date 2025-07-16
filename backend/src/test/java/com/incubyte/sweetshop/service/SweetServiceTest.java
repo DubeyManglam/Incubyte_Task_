@@ -145,15 +145,28 @@ public class SweetServiceTest {
         assertEquals(expectedOrderOfSweets,resultedOrderOfSweets);
     }
 
+    //                        -------------Inventory Management------------
     //                        -------------Purchase sweet---------------
     @Test
     void shouldPurchaseSweetSuccessfullyAndReduceStock() {
         Sweet purchasedSweet = sweetService.purchaseSweet(1000L, 5);  // ID = 1000, quantity = 5
-        assertEquals(15, purchasedSweet.getQuantity());  // original stock was 20 of Kaju Katli
+        assertEquals(15, purchasedSweet.getQuantityInStock());  // original stock was 20 of Kaju Katli
     }
 
     @Test
     void shouldThrowExceptionIfStockNotAvailable() {
         assertThrows(InsufficientStockException.class,()->sweetService.purchaseSweet(1001L, 16));// original stock was 15 only of gajar halwa
+    }
+
+    @Test
+    void shouldThrowExceptionIfSweetNotFound() {
+        assertThrows(SweetNotFoundException.class,()->sweetService.purchaseSweet(1009L, 10));
+    }
+
+    //                        -------------Restock sweet---------------
+    @Test
+    void shouldRestockSweetSuccessfully() {
+        Sweet restockedSweet = sweetService.restockSweet(1000L, 10);  // Assuming ID 1000 exists
+        assertEquals(30, restockedSweet.getQuantityInStock());  // Original was 20, now should be 30
     }
 }

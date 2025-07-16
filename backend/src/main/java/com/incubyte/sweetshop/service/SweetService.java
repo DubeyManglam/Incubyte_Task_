@@ -118,7 +118,7 @@ public class SweetService {
                 }
             }
         }
-        return null;
+        throw new SweetNotFoundException("Sweet with ID " + id + " not found");
     }
 
 }
