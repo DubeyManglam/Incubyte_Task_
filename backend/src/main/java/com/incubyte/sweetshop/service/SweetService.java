@@ -26,6 +26,7 @@ public class SweetService {
         }
         Sweet sweet = new Sweet(idCounter++, name, category, price, quantity);
         sweets.add(sweet);
+        System.out.println("Sweet added successfully: " + sweet);
         return sweet;
     }
 
@@ -107,11 +108,13 @@ public class SweetService {
     }
 
     //                        -------------Inventory Management---------------
+    //purchase sweet with given quantity
     public Sweet purchaseSweet(long id, int quantity) {
         for (Sweet sweet : sweets) {
             if (sweet.getId() == id) {
-                if (sweet.getQuantity() >= quantity) {
-                    sweet.setQuantity(sweet.getQuantity() - quantity);
+                if (sweet.getQuantityInStock() >= quantity) {
+                    sweet.setQuantityInStock(sweet.getQuantityInStock() - quantity);
+                    System.out.println("Successfully purchased " + quantity + " of " + sweet.getName());
                     return sweet;
                 }else{
                     throw new InsufficientStockException("Not enough stock for sweet ID: "+ id);
@@ -120,5 +123,17 @@ public class SweetService {
         }
         throw new SweetNotFoundException("Sweet with ID " + id + " not found");
     }
+
+    //restock sweet
+    public Sweet restockSweet(long id, int quantity) {
+        for (Sweet sweet : sweets) {
+            if (sweet.getId() == id) {
+                sweet.setQuantityInStock(sweet.getQuantityInStock() + quantity);
+                return sweet;
+            }
+        }
+        throw new SweetNotFoundException("Sweet with ID " + id + " not found");
+    }
+
 
 }

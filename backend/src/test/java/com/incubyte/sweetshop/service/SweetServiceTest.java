@@ -167,6 +167,6 @@ public class SweetServiceTest {
     @Test
     void shouldRestockSweetSuccessfully() {
         Sweet restockedSweet = sweetService.restockSweet(1000L, 10);  // Assuming ID 1000 exists
-        assertEquals(30, restockedSweet.getQuantityInStock());  // Original was 20, now should be 30
+        assertEquals(30, restockedSweet.getQuantityInStock());  // Original was 20, now it should be 30
     }
 }
