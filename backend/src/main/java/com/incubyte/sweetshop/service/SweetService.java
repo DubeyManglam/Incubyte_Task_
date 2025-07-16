@@ -61,4 +61,12 @@ public class SweetService {
         }
         return result;
     }
+
+    //search sweets by category
+    public List<Sweet> searchSweetByCategory(String category) {
+        return sweets.stream()
+                .filter(s -> s.getCategory().equalsIgnoreCase(category))
+                .collect(Collectors.toList());
+    }
+
 }

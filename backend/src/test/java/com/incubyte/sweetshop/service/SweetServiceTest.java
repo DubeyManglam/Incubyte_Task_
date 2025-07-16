@@ -87,5 +87,10 @@ public class SweetServiceTest {
         assertThrows(SweetNotFoundException.class,()->sweetService.searchSweetByName("rasgulla"));
     }
 
-    
+    @Test
+    void shouldReturnAllSweetsFromGivenCategory() {
+        List<Sweet> sweets = sweetService.searchSweetByCategory("Milk-Based");
+        assertEquals(1, sweets.size());
+        assertEquals("Gulab Jamun", sweets.get(0).getName());
+    }
 }
