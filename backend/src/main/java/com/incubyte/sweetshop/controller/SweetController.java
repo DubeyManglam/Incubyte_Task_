@@ -28,4 +28,9 @@ public class SweetController {
     public List<Sweet> getAllSweets() {
         return sweetService.getAllSweets();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public Sweet deleteSweet(@PathVariable int id) {
+        return sweetService.deleteSweet(id);
+    }
 }
