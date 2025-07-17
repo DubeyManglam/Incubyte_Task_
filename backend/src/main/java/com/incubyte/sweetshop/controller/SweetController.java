@@ -54,9 +54,19 @@ public class SweetController {
     public List<Sweet> sortByPriceAsc() {
         return sweetService.sortSweetsByPriceAscending();
     }
-    
+
     @GetMapping("/sort/price-desc")
     public List<Sweet> sortByPriceDesc() {
         return sweetService.sortSweetsByPriceDescending();
+    }
+
+    @GetMapping("/sort/quantity-asc")
+    public List<Sweet> sortByQuantityAsc() {
+        return sweetService.sortSweetsByQuantityAscending();
+    }
+    
+    @GetMapping("/sort/quantity-desc")
+    public List<Sweet> sortByQuantityDesc() {
+        return sweetService.sortSweetsByQuantityDescending();
     }
 }
