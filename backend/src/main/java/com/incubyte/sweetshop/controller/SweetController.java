@@ -44,4 +44,11 @@ public class SweetController {
     public List<Sweet> searchByCategory(@PathVariable String category) {
         return sweetService.searchSweetByCategory(category);
     }
+
+    @GetMapping("/search/by-price")
+    public List<Sweet> searchByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
+        return sweetService.searchSweetsByPriceRange(minPrice, maxPrice);
+    }
+
+    
 }
