@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/sweetshop/api/sweet")
 public class SweetController {
 
@@ -32,5 +33,10 @@ public class SweetController {
     @DeleteMapping("/delete/{id}")
     public Sweet deleteSweet(@PathVariable int id) {
         return sweetService.deleteSweet(id);
+    }
+
+    @GetMapping("/search/byName/{name}")
+    public List<Sweet> searchByName(@PathVariable String name) {
+        return sweetService.searchSweetByName(name);
     }
 }
