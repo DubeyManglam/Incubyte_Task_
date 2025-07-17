@@ -50,5 +50,13 @@ public class SweetController {
         return sweetService.searchSweetsByPriceRange(minPrice, maxPrice);
     }
 
+    @GetMapping("/sort/price-asc")
+    public List<Sweet> sortByPriceAsc() {
+        return sweetService.sortSweetsByPriceAscending();
+    }
     
+    @GetMapping("/sort/price-desc")
+    public List<Sweet> sortByPriceDesc() {
+        return sweetService.sortSweetsByPriceDescending();
+    }
 }
