@@ -1,12 +1,46 @@
-# React + Vite
+# Sweet Shop Management System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the Sweet Shop Management System, built using ReactJS.  
+It communicates with the Spring Boot backend through REST APIs.
 
-Currently, two official plugins are available:
+## Features Implemented
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- List all sweets in a card-based layout.
+- Add new sweets with details like name, category, price, and quantity.
+- Search sweets by name, category, and price range.
+- Sort sweets by price (ascending/descending) and quantity (ascending/descending).
+- Purchase sweets and reduce stock accordingly.
+- Restock sweets and increase stock.
+- Delete sweets from the list.
+- Display success and error notifications for all actions.
+- Responsive user interface with Bootstrap.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ReactJS
+- Axios for API communication
+- Bootstrap 5 for styling
+- React-hot-toast for notifications
+- Spring Boot REST API (backend)
+
+## Project Structure
+
+/Frontend
+├── src
+│ ├── components
+│ │ ├── Navbar.jsx
+│ │ ├── SweetListPage.jsx
+│ │ ├── AddSweetForm.jsx
+│ │ └── SweetCard.jsx
+│ ├── service
+│ │ └── ApiSweet.js
+│ ├── App.jsx
+│ └── main.jsx
+├── public
+├── package.json
+├── README.md
+
+## Author
+
+Preksha Divraniya  
+This project is built as part of the Incubyte TDD Kata Assessment.
