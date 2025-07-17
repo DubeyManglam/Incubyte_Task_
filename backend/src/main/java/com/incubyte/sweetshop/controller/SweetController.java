@@ -39,4 +39,9 @@ public class SweetController {
     public List<Sweet> searchByName(@PathVariable String name) {
         return sweetService.searchSweetByName(name);
     }
+
+    @GetMapping("/search/byCategory/{category}")
+    public List<Sweet> searchByCategory(@PathVariable String category) {
+        return sweetService.searchSweetByCategory(category);
+    }
 }
