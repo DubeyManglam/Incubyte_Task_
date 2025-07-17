@@ -16,9 +16,19 @@ A full-stack Sweet Shop Management System built with **Java (Spring Boot)** for 
 
 ## Project Structure  
 ```
-/Backend
-└── src
-└── pom.xml
+/Backend  
+ ├── src  
+ │   ├── main  
+ │   │   └── java  
+ │   │       └── com.incubyte.sweetshop  
+ │   │            ├── controller  
+ │   │            ├── service  
+ │   │            ├── model  
+ │   │            └── customExceptions  
+ │   └── test  
+ │       └── java  
+ │           └── com.incubyte.sweetshop.service  
+ └── pom.xml  
 
 /Frontend
 └── src
