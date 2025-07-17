@@ -24,7 +24,7 @@ It communicates with the Spring Boot backend through REST APIs.
 - Spring Boot REST API (backend)
 
 ## Project Structure
-
+```
 /Frontend
 ├── src
 │ ├── components
@@ -39,7 +39,7 @@ It communicates with the Spring Boot backend through REST APIs.
 ├── public
 ├── package.json
 ├── README.md
-
+```
 ## Author
 
 Preksha Divraniya  
