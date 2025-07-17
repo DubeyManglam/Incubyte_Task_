@@ -1,4 +1,4 @@
-# Sweet Shop Management System  
+ # Sweet Shop Management System  
 
 ## Overview  
 
@@ -93,25 +93,25 @@ Frontend runs on: http://localhost:5173
 ![Add Sweet](screenshots/AddSweet.jpeg)
 
 ### Sort Sweet By Quantity in Ascending Order  
-![Add Sweet](screenshots/SortByQuantityAscending.jpeg)
+![Sort Sweet](screenshots/SortByQuantityAscending.jpeg)
 
 ### Search Sweet By Name  
-![Add Sweet](screenshots/SearchByName.jpeg)
+![Search Sweet](screenshots/SearchByName.jpeg)
 
 ### Search Sweet By Category  
-![Add Sweet](screenshots/SearchByCategory.jpeg)
+![Search Sweet](screenshots/SearchByCategory.jpeg)
 
 ### Sort Sweet By Price Range(Min,Max)  
-![Add Sweet](screenshots/SearchByPriceRange.jpeg)
+![Sort Sweet](screenshots/SearchByPriceRange.jpeg)
 
 ### Delete Sweet Gajar Halwa
-![Add Sweet](screenshots/DeleteSweet.jpeg)
+![Delete Sweet](screenshots/DeleteSweet.jpeg)
 
 ### Purchase Sweet Rabdi - Quantity(10)
-![Add Sweet](screenshots/PurchaseSweetRabdi.jpeg)
+![Purchase Sweet](screenshots/PurchaseSweetRabdi.jpeg)
 
 ### Restock Sweet Kaju Katli - Quantity(10)
-![Add Sweet](screenshots/RestockKajuKatli.jpeg)
+![Restock Sweet](screenshots/RestockKajuKatli.jpeg)
 
 - Rest of the Screenshots are attached in screenshots folder
 ## Author
