@@ -3,10 +3,9 @@ package com.incubyte.sweetshop.controller;
 import com.incubyte.sweetshop.model.Sweet;
 import com.incubyte.sweetshop.service.SweetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sweetshop/api/sweet")
@@ -23,5 +22,10 @@ public class SweetController {
                 sweet.getPrice(),
                 sweet.getQuantityInStock()
         );
+    }
+
+    @GetMapping("/getAllSweets")
+    public List<Sweet> getAllSweets() {
+        return sweetService.getAllSweets();
     }
 }
