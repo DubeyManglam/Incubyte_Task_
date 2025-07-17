@@ -64,9 +64,19 @@ public class SweetController {
     public List<Sweet> sortByQuantityAsc() {
         return sweetService.sortSweetsByQuantityAscending();
     }
-    
+
     @GetMapping("/sort/quantity-desc")
     public List<Sweet> sortByQuantityDesc() {
         return sweetService.sortSweetsByQuantityDescending();
+    }
+
+    @PostMapping("/purchase/{id}")
+    public Sweet purchaseSweet(@PathVariable long id, @RequestParam int quantity) {
+        return sweetService.purchaseSweet(id, quantity);
+    }
+    
+    @PostMapping("/restock/{id}")
+    public Sweet restockSweet(@PathVariable long id, @RequestParam int quantity) {
+        return sweetService.restockSweet(id, quantity);
     }
 }
