@@ -73,7 +73,7 @@ public class SweetService {
     //Search by name functionality and if sweet is not found then throws exception
     public List<Sweet> searchSweetByName(String name) {
         List<Sweet> result = sweets.stream()
-                .filter(s -> s.getName().equalsIgnoreCase(name))
+                .filter(s -> s.getName().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
 
         if (result.isEmpty()) {
@@ -85,7 +85,7 @@ public class SweetService {
     //search sweets by category
     public List<Sweet> searchSweetByCategory(String category) {
         return sweets.stream()
-                .filter(s -> s.getCategory().equalsIgnoreCase(category))
+                .filter(s -> s.getCategory().toLowerCase().contains(category.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
