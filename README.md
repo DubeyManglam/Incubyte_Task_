@@ -116,5 +116,5 @@ Frontend runs on: http://localhost:5173
 - Rest of the Screenshots are attached in screenshots folder
 ## Author
 
-Preksha Divraniya  
+Manglam Dubey
 This project is built as part of the Incubyte TDD Kata Assessment.
