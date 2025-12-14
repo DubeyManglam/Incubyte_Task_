@@ -42,5 +42,5 @@ It communicates with the Spring Boot backend through REST APIs.
 ```
 ## Author
 
-Preksha Divraniya  
+Manglam Dubey
 This project is built as part of the Incubyte TDD Kata Assessment.
